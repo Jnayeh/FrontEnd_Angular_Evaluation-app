@@ -1,0 +1,40 @@
+<div class="container rounded">
+  <div class="wrapper">
+    <form action="#" method="post" #form="ngForm" *ngIf="router.url === '/formations',else modify">
+
+      <div class="field">
+          <input type="text" id="name" name="Theme" placeholder="What's the theme ?" #formationTheme="ngModel" [(ngModel)]="theme" (keydown)="errors = ''" autofocus required />
+          <div [hidden]="!formationTheme.errors?.required || formationTheme.pristine" class="alert alert-danger"> Le theme est obligatoire </div>
+          <label for="name">Theme</label>
+      </div>
+
+      <div class="field">
+        <input class="button" [disabled]="form.invalid" type="submit" value="Ajouter formation" [class.is-loading]="isLoading" (click)="addFormation(formationTheme.value)"/>
+      </div>
+
+      <div class="field">
+        <div [hidden]="!error" class="alert alert-danger">La formation existe déja</div>
+      </div>
+
+    </form>
+    <ng-template #modify>
+
+    <form action="#" #form="ngForm" method="post">
+      <div style="text-align:center; font-size:4vh">Id: {{formation.id}}</div>
+      <div class="field" >
+        <input type="text" id="name" name="Theme" value="{{formation.theme}}"  #formationTheme="ngModel" [(ngModel)]="formation.theme" (keydown)="errors = ''" autofocus required />
+        <div [hidden]="!formationTheme.errors?.required || formationTheme.pristine" class="alert alert-danger"> Le theme est obligatoire </div>
+        <label for="name">Theme</label>
+      </div>
+
+      <div class="field">
+        <input class="button" [disabled]="form.invalid" type="submit" value="Modifier formation" [class.is-loading]="isUpdating(formation.id)"  (click)="editFormation(formation.id,formationTheme.value)"/>
+      </div>
+
+      <div class="field">
+        <div [hidden]="!error" class="alert alert-danger">La formation n'est pas unique</div>
+      </div>
+    </form>
+  </ng-template>
+  </div>
+</div>

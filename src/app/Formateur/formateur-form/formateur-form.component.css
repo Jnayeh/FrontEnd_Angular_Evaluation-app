@@ -1,0 +1,141 @@
+* {
+    box-sizing: border-box;
+    color: #fff;
+    font-family: Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana,
+      "sans-serif";
+  }
+  
+  html,
+  body {
+    background: #0e101f;
+    margin: 0;
+    padding: 0;
+  }
+  
+  *:focus {
+    outline: 0;
+  }
+  
+  .wrapper {
+    margin: 50px;
+    width: 80%;
+    max-width: 1000px;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .container{
+    backdrop-filter:  blur(8px);
+    background-color: hsla(204, 95%, 33%, 0.63) ;
+    width: 100%;
+  }
+  
+  form {
+    width: 100%;
+    margin: 4%;
+  }
+  
+  form * {
+    font-size: 20px;
+    letter-spacing: 0.075em;
+    font-weight: 300;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  
+  form .field {
+    width: 100%;
+    position: relative;
+    margin-bottom: 15px;
+  }
+  
+  form .field label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background:  #04ECFC ;
+    width: 100%;
+    height: 55px;
+    transition: width 333ms ease-in-out;
+    text-align: center;
+    padding: 10px 0;
+  }
+  
+  form .field input[type="text"],
+  form .field select[type="text"],
+  form .field input[type="number"],
+  form .field input[type="email"],
+  form .field textarea {
+    border: none;
+    width: 100%;
+    height: 55px;
+    margin: 0;
+    padding-left: 25.5%;
+    color: #313a3d;
+  }
+  
+  form #msg {
+    height: 55px;
+    resize: none;
+    transition: all 333ms ease-in-out;
+    padding-top: 18px;
+  }
+  form textarea:focus#msg,
+  form textarea:not(:placeholder-shown)#msg {
+    height: 166px;
+  }
+  
+  form select[type="text"]:focus + label,
+  form select[type="text"]:not(:placeholder-shown) + label,
+  form input[type="text"]:focus + label,
+  form input[type="text"]:not(:placeholder-shown) + label,
+  form input[type="number"]:focus + label,
+  form input[type="number"]:not(:placeholder-shown) + label,
+  form input[type="email"]:focus + label,
+  form input[type="email"]:not(:placeholder-shown) + label,
+  form textarea:focus + label,
+  form textarea:not(:placeholder-shown) + label,
+  form .field:hover label {
+    width: 24.5%;
+  }
+  
+  form input[type="submit"],
+  form input[type="reset"] {
+    background: #14A1F6 ;
+    -webkit-appearance: none;
+    width: 60%;
+    border: none;
+    position: relative;
+    padding: 13px;
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+  }
+
+  form input[type="submit"]:hover,
+  form input[type="reset"]:hover,
+  form input[type="submit"]:focus,
+  form input[type="reset"]:focus {
+    background: #045992;  
+  }
+
+  form input:disabled,form input:disabled:hover{
+    background: #6a7f8b ;
+    cursor: wait;
+  }
+
+  .form-control,.form-control option{
+    color: #109fff;
+  }
+
+  .form-control option:hover{
+    color: #ffffff;
+    background-color: #109fff;
+    cursor: pointer;
+  }
+
+  .alert-danger{
+    background-color: #03578f ;
+    color: #ffffff;
+    border:none;
+  }

@@ -1,0 +1,33 @@
+<body>
+    <div class="container rounded top">
+        <span class="help is-info"  *ngIf="isLoading">Loading...</span>
+        <div *ngIf="!isLoading">
+            <table class="table" >
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nom</th>
+                        <th>Type</th>
+                        <th *ngIf="router.url === '/etablissement/consult'">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let etablissement of etablissements">
+                        <td>{{ etablissement.id }}</td>
+                        <td>{{ etablissement.nom | uppercase}}</td>
+                        <td>{{ etablissement.type | uppercase}}</td>
+
+                        <td *ngIf="router.url === '/etablissement/consult'">
+                            <form>
+                                <button type="button" class="btn btn-outline-default btn-sm" [routerLink]="['/etablissement/edit',etablissement.id]">Modifier </button>
+                                <button type="button" class="btn btn-outline-dark btn-sm" [class.is-loading]="isUpdating(etablissement.id)" (click)="removeEtablissement(etablissement.id)">Supprimer </button>
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <button *ngIf="router.url === '/etablissements'" (click)="toggle(show)" class="btn btn-outline-dark btn-sm" id="bt">{{btName}} </button>
+        </div>
+        <app-etablissement-form *ngIf="show" (etablissementAdded)="appendEtablissement($event)"(toggle)="toggle($event)"></app-etablissement-form>
+    </div>
+</body>

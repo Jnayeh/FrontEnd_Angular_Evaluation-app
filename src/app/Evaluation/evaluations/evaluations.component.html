@@ -1,0 +1,47 @@
+<div class=" top">
+    <div class="table" *ngIf="isLoading">Loading...</div>
+    <div *ngIf="!isLoading">
+        <table class="table" >
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Formateur</th>
+                    <th>Formation</th>
+                    <th>Date Formation</th>
+                    <th>Date Evaluation</th>
+                    <th>Etablissement</th>
+                    <th>Type_etab</th>
+                    <th>Participant</th>
+                    <th>telephone</th>
+                    <th>mail</th>
+                    <th>Q1</th>
+                    <th>Q2</th>
+                    <th>Q3</th>
+                    <th>Q4</th>
+                    <th>Q5</th>
+                    <th>Suggestion</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let evaluation of evaluations">
+                    <td>{{ evaluation.id }}</td>
+                    <td>{{ evaluation.Formateur | uppercase}}</td>
+                    <td>{{ evaluation.Formation }}</td>
+                    <td>{{ evaluation.date_formation }}</td>
+                    <td>{{ evaluation.date_evaluation }}</td>
+                    <td>{{ evaluation.Etablissement | uppercase}}</td>
+                    <td>{{ evaluation.Etablissement_type }}</td>
+                    <td>{{ evaluation.Participant | uppercase}}</td>
+                    <td>{{ evaluation.telephone }}</td>
+                    <td>{{ evaluation.email }}</td>
+                    <td>{{ evaluation.Q1}}</td>
+                    <td>{{ evaluation.Q2}}</td>
+                    <td>{{ evaluation.Q3}}</td>
+                    <td>{{ evaluation.Q4}}</td>
+                    <td>{{ evaluation.Q5}}</td>
+                    <td>{{ evaluation.Suggestion}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

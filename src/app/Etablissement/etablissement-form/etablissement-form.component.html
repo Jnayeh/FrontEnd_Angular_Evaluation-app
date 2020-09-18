@@ -1,0 +1,59 @@
+<div class="container rounded">
+  <div class="wrapper">
+    <form action="#" method="post" #form="ngForm" *ngIf="router.url === '/etablissements',else modify">
+      
+      <!-- Nom -->
+      <div class="field" >
+        <input type="text" id="last name" name="Nom" placeholder="What's your last name ?" #etablissementNom="ngModel" autofocus required [(ngModel)]="f.nom"/>
+        <div [hidden]="!etablissementNom.errors?.required || etablissementNom.pristine" class="alert alert-danger"> Le nom est obligatoire </div>
+        <label for="last_name">Nom</label>
+      </div>
+      <!-- Type -->
+      <div class="field">
+        <select type="text" id="type" name="Type" #etablissementType="ngModel" [(ngModel)]="f.type" required class="form-control">
+            <option value="" [hidden]="true" > </option>
+            <option *ngFor="let type_etab of types_etab" [selected]="type_etab.type == 'EPS'" value="{{type_etab.type}}" >{{type_etab.type}}</option>
+        </select>  
+        <label for="type">Type</label>
+      </div>
+      <!-- Buttons -->
+      <div class="field">
+        <input class="button" type="submit" value="Ajouter etablissement" [class.is-loading]="isLoading" [disabled]="form.invalid" (click)="addEtablissement(etablissementNom.value,etablissementType.value)"/>
+        <div [hidden]="!error" class="alert alert-danger"> L'etablissement existe déja</div>
+      </div>
+      <div class="field">
+        <input class="button" type="reset" value="Réinitialiser">
+      </div>
+    </form>
+
+    <ng-template #modify>
+    <form action="#" #form="ngForm" method="post">
+      <div style="text-align:center; font-size:4vh">Id: {{etablissement.id}}</div>
+      <!-- Nom -->
+      <div class="field" >
+        <input type="text" id="last name" name="Nom" value="{{etablissement.nom}}" #etablissementNom="ngModel" autofocus required [(ngModel)]="etablissement.nom"/>
+        <div [hidden]="!etablissementNom.errors?.required || etablissementNom.pristine" class="alert alert-danger"> Le nom est obligatoire </div>
+        <label for="last_name">Nom</label>
+      </div>
+      <!-- Type -->
+      <div class="field">
+        <select type="text" id="type"  #etablissementType="ngModel" [(ngModel)]="etablissement.type" required name="Type" class="form-control">
+            <option value="" [hidden]="true" > </option>
+            <option *ngFor="let type_etab of types_etab" value="{{type_etab.type}}" >{{type_etab.type}}</option>
+        </select>  
+        <label for="type">Type</label>
+      </div>
+      
+      <!-- Buttons -->
+      <div class="field">
+        <input class="button" type="submit" value="Modifier etablissement" [class.is-loading]="isUpdating(etablissement.id)" [disabled]="form.invalid" (click)="editEtablissement(etablissement.id,etablissementNom.value,etablissementType.value)" />
+        <div [hidden]="!error" class="alert alert-danger"> L'etablissement n'est pas unique</div>
+      </div>
+      <div class="field">
+        <input class="button" type="reset" value="Réinitialiser">
+      </div>
+    </form>
+    </ng-template>
+  </div>
+</div>
+<!--[routerLink]="['/etablissement/consult']"-->

@@ -1,0 +1,5 @@
+<div *ngFor="let etablissement of etablissements">
+    <div *ngIf="etablissement.id==id">
+        <app-etablissement-form [etablissement]="etablissement" ></app-etablissement-form>
+    </div>
+</div>

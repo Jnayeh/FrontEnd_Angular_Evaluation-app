@@ -1,0 +1,158 @@
+* {
+    box-sizing: border-box;
+    color: #fff;
+    font-family: Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana;
+  }
+  
+  
+body{
+  background-image: url("../../assets/cims.png");
+}
+  
+  *:focus {
+    outline: 0;
+  }
+  
+  
+  form {
+    width: 100%;
+    padding:2% 4%;
+  }
+  
+  form label {
+    font-size: 16px;
+    letter-spacing: 0.075em;
+  }
+  
+  
+  form input[type="submit"],
+  form input[type="reset"] {
+    background: #14A1F6 ;
+    -webkit-appearance: none;
+    border: none;
+    position: relative;
+    padding: 13px;
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+  }
+  form input[type="submit"]:hover,
+  form input[type="reset"]:hover,
+  form input[type="submit"]:focus,
+  form input[type="reset"]:focus {
+    background: #045992;  
+  }
+  form input:disabled,form input:disabled:hover{
+    background: #6a7f8b ;
+    cursor: wait;
+  }
+  .container{
+    backdrop-filter:  blur(8px);
+    background-color: hsla(204, 95%, 33%, 0.486) ;
+    width: 100%;
+  }
+  .form-control, option{
+    color: #109fff;
+    font-weight: 600;
+  }
+  option:hover{
+    color: #ffffff;
+    background-color: #109fff;
+    cursor: pointer;
+    font-weight: 600;
+  }
+  .alert-danger{
+    background-color: #03578f ;
+    color: #ffffff;
+    border:none;
+    font-weight: 800;
+  }
+  .bd-example {
+    padding: 1.5rem;
+    margin-right: 0;
+    margin-left: 0;
+    border-width: .5rem;
+  }
+
+  .pad{
+    padding: 10px;
+    background-color: #03578f ;
+    margin-bottom: 10px;
+  }
+
+  select{
+    cursor: pointer;
+    border-radius: 3px;
+  }
+
+  h1{
+    text-align: center;
+    padding: 5px;
+  }
+  h1{ padding-top: 1.5em; padding-bottom: 2em; } 
+  h2 {
+    clear:both;
+    color: #aaa;
+    padding: 2em 0 0.3em
+  }
+  em {
+    display: block;
+    margin: .5em auto 2em;
+    color: #bbb;
+  }
+
+  p, p input[type="radio"] { 
+    color: #aaa;
+    text-decoration: none;
+  }
+  p input[type="radio"]:hover,
+  p input[type="radio"]:focus {
+    text-decoration: underline;
+  }
+  p + p { color: #bbb; margin-top: 2em;}
+  .detail {position: absolute; text-align: right; right: 5px; bottom: 5px; width: 50%;}
+
+  input[type="radio"][href*="intent"] {
+    display:inline-block;
+    margin-top: 0.4em;
+  }
+
+/*  
+ * Rating styles
+
+.rating {
+  font-size: 45px;
+  overflow:hidden;
+}
+.rating input {
+  float: right;
+  opacity: 0;
+  position: absolute;
+}
+.rating input[type="radio"],
+.rating label {
+  float:right;
+  color: rgb(194, 193, 193);
+  text-decoration: none;
+  font-size: 30px;
+  -webkit-transition: color .4s;
+  -moz-transition: color .4s;
+  -o-transition: color .4s;
+  transition: color .4s;
+}
+.rating label:hover ~ label,
+.rating input:focus ~ label,
+.rating label:hover,
+.rating input[type="radio"]:hover,
+.rating input[type="radio"]:hover ~ input[type="radio"],
+.rating input[type="radio"]:focus,
+.rating input[type="radio"]:focus ~ input[type="radio"],
+.rating input[type="radio"]:checked		{
+  color: rgb(255, 251, 0);
+  cursor: pointer;
+}
+.rating2 {
+  direction: rtl;
+}
+.rating2 input[type="radio"] {
+  float:none
+} */

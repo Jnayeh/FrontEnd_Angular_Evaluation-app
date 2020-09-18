@@ -1,0 +1,45 @@
+<div id="mySidebar" class="sidebar">
+    
+    <div id="div">
+    <a routerLinkActive="actif" [routerLink]="['']">Tableau du Board</a>
+    <div class="dropdown">
+    <button class="dropdown-btn" (click)="click()">Formations </button>
+    <div class="dropdown-container">
+        <a routerLinkActive="actif" [routerLink]="['/formations']">Ajouter</a>
+        <a routerLinkActive="actif" [routerLink]="['/formation/consult']">Consulter</a>
+    </div>
+    </div>
+    <div class="dropdown">
+    <button class="dropdown-btn" (click)="click()">Formateurs </button>
+    <div class="dropdown-container">
+        <a routerLinkActive="actif" [routerLink]="['/formateurs']">Ajouter</a>
+        <a  routerLinkActive="actif" [routerLink]="['/formateur/consult']">Consulter</a>
+    </div>
+    </div>
+    <div class="dropdown">
+    <button class="dropdown-btn" (click)="click()">Etablissements </button>
+    <div class="dropdown-container">
+        <a routerLinkActive="actif" [routerLink]="['/etablissements']">Ajouter</a>
+        <a routerLinkActive="actif" [routerLink]="['/etablissement/consult']">Consulter</a>
+    </div>
+    </div>
+    <a routerLinkActive="actif" [routerLink]="['/evaluations']">Evaluations</a>
+    </div>
+</div>
+<div id="main">
+    <div>
+        <ul class="ul">
+            <img src="../../assets/download.png" class="img">
+            <a  class="openbtn rounded"  (click)="toggle()"><span ></span>☰ Menu</a>
+            <!--li><a href="#"><span class="glyphicon glyphicon-user btn btn-outline-default btn-sm" style="float: right;"></span> Sign Up</a></li-->
+            <li><a  (click)="LogOut()"><span ></span>Se déconnecter</a></li>
+        </ul>
+    </div>
+    <div *ngIf="router.url !== '/', else dashboard">
+        <router-outlet></router-outlet>
+    </div>
+    <ng-template #dashboard>
+        <app-home [user]="user"></app-home>
+    </ng-template>
+    
+  </div>

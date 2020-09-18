@@ -1,0 +1,98 @@
+<div class="container rounded">
+  <div class="wrapper">
+    <form action="#" method="post" #form="ngForm" *ngIf="router.url === '/formateurs',else modify">
+      
+      <!-- Nom -->
+      <div class="field" >
+        <input type="text" id="last name" name="Nom" placeholder="What's your last name ?" #formateurNom="ngModel" autofocus required [(ngModel)]="f.nom"/>
+        <div [hidden]="!formateurNom.errors?.required || formateurNom.pristine" class="alert alert-danger"> Le nom est obligatoire </div>
+        <label for="last_name">Nom</label>
+      </div>
+      <!-- Prenom -->
+      <div class="field">
+        <input type="text" id="first_name" name="PreNom" placeholder="What's your first name ?"  #formateurPreNom="ngModel" autofocus required [(ngModel)]="f.prenom"/>
+        <div [hidden]="!formateurPreNom.errors?.required || formateurPreNom.pristine" class="alert alert-danger"> Le prenom est obligatoire </div>
+        <label for="first_name">Prenom</label>
+      </div>
+      <!-- Sexe -->
+      <div class="field">
+        <select type="text" id="genre"  #formateurSexe name="Sexe" class="form-control">
+            <option value="homme" >Homme</option>
+            <option value="femme"> Femme</option>
+        </select>  
+        <label for="sexe">Sexe</label>
+      </div>
+      <!-- Telephone -->
+      <div class="field">
+        <input type="number" id="telephone" name="Telephone" placeholder="What's your phone number?"  #formateurTelephone="ngModel" autofocus required [(ngModel)]="f.telephone"  autofocus pattern="[0-9]{8}$"/>
+        <div *ngIf="formateurTelephone.invalid && formateurTelephone.dirty" class="alert alert-danger"> Le numéro du telephone doit être composé de 8 chiffres </div>
+        <div [hidden]="!formateurTelephone.errors?.required || formateurTelephone.pristine" class="alert alert-danger"> Le numéro du telephone est obligatoire </div>
+        <label for="telephone">Telephone</label>
+      </div>
+      <!-- Mail -->
+      <div class="field">
+        <input type="email" id="email" name="Email"  placeholder="What's your email ?"  autofocus required [(ngModel)]="f.email"  #formateurAdresse="ngModel" autofocus pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"/>
+        <div *ngIf="formateurAdresse.invalid && formateurAdresse.dirty" class="alert alert-danger"> L'email doit sous la forme *****@****.***  </div>
+        <div [hidden]="!formateurAdresse.errors?.required || formateurAdresse?.pristine" class="alert alert-danger"> L'email est obligatoire </div>
+        <label for="email">Email</label>
+      </div>
+      <!-- Buttons -->
+      <div class="field">
+        <input class="button" type="submit" value="Ajouter formateur" [class.is-loading]="isLoading" [disabled]="form.invalid" (click)="addFormateur(formateurNom.value,formateurPreNom.value,formateurSexe.value,formateurTelephone.value,formateurAdresse.value)"/>
+        <div [hidden]="!error" class="alert alert-danger"> L'email de formateur ou le nom et le prénom de formateur ne sont pas uniques</div>
+      </div>
+      <div class="field">
+        <input class="button" type="reset" value="Réinitialiser">
+      </div>
+        </form>
+    <ng-template #modify>
+    <form action="#" #form="ngForm" method="post">
+      <div style="text-align:center; font-size:4vh">Id: {{formateur.id}}</div>
+      <!-- Nom -->
+      <div class="field" >
+        <input type="text" id="last name" name="Nom" value="{{formateur.nom}}" #formateurNom="ngModel" autofocus required [(ngModel)]="formateur.nom"/>
+        <div [hidden]="!formateurNom.errors?.required || formateurNom.pristine" class="alert alert-danger"> Le nom est obligatoire </div>
+        <label ></label>
+        <label for="last_name">Nom</label>
+      </div>
+      <!-- Prenom -->
+      <div class="field">
+        <input type="text" id="first_name" name="PreNom" value="{{formateur.prenom}}"  #formateurPreNom="ngModel" autofocus required [(ngModel)]="formateur.prenom"/>
+        <div [hidden]="!formateurPreNom.errors?.required || formateurPreNom.pristine" class="alert alert-danger"> Le prenom est obligatoire </div>
+        <label for="first_name">Prenom</label>
+      </div>
+      <!-- Sexe -->
+      <div class="field">
+        <select type="text" id="genre"  #formateurSexe="ngModel" [(ngModel)]="formateur.sexe" name="Sexe" class="form-control">
+            <option value="homme" >Homme</option>
+            <option value="femme"> Femme</option>
+        </select>  
+        <label for="sexe">Sexe</label>
+      </div>
+      <!-- Telephone -->
+      <div class="field">
+        <input type="number" id="telephone" name="Telephone" value="{{formateur.telephone}}"  #formateurTelephone="ngModel" autofocus required [(ngModel)]="formateur.telephone"  autofocus pattern="[0-9]{8}$"/>
+        <div *ngIf="formateurTelephone.invalid && formateurTelephone.dirty" > Le numéro du telephone doit être composé de 8 chiffres </div>
+        <div [hidden]="!formateurTelephone.errors?.required || formateurTelephone.pristine" > Le numéro du telephone est obligatoire </div>
+        <label for="telephone">Telephone</label>
+      </div>
+      <!-- Mail -->
+      <div class="field">
+        <input type="email" id="email" name="Email"  value="{{formateur.email}}"  autofocus required [(ngModel)]="formateur.email"  #formateurAdresse="ngModel" autofocus pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"/>
+        <div *ngIf="formateurAdresse.invalid && formateurAdresse.dirty" class="alert alert-danger"> L'email doit sous la forme *****@****.***  </div>
+        <div [hidden]="!formateurAdresse.errors?.required || formateurAdresse.pristine" class="alert alert-danger"> L'email est obligatoire </div>
+        <label for="email">Email</label>
+      </div>
+      <!-- Buttons -->
+      <div class="field">
+        <input class="button" type="submit" value="Modifier formateur" [class.is-loading]="isUpdating(formateur.id)" [disabled]="form.invalid" (click)="editFormateur(formateur.id,formateurNom.value,formateurPreNom.value,formateurSexe.value,formateurTelephone.value,formateurAdresse.value)" />
+        <div [hidden]="!error" class="alert alert-danger"> L'email de formateur ou le nom et le prénom de formateur ne sont pas uniques</div>
+      </div>
+      <div class="field">
+        <input class="button" type="reset" value="Réinitialiser">
+      </div>
+      </form>
+  </ng-template>
+  </div>
+</div>
+<!--[routerLink]="['/formateur/consult']"-->

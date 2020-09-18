@@ -1,0 +1,30 @@
+<body>
+    <div class="container rounded top">
+        <span class="help is-info"  *ngIf="isLoading">Loading...</span>
+        <div *ngIf="!isLoading">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Theme</th>
+                        <th *ngIf="router.url === '/formation/consult'">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let formation of formations">
+                        <td>{{ formation.id }}</td>
+                        <td>{{ formation.theme | uppercase}}</td>
+                        <td *ngIf="router.url === '/formation/consult'">
+                            <form>
+                                <button type="button" class="btn btn-outline-default btn-sm" [routerLink]="['/formation/edit',formation.id]">Modifier </button>
+                                <button type="button" class="btn btn-outline-dark btn-sm" [class.is-loading]="isUpdating(formation.id)" (click)="removeFormation(formation.id)">Supprimer </button>
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <button *ngIf="router.url === '/formations'" (click)="toggle(show)" class="btn btn-outline-dark btn-sm" id="bt">{{btName}} </button>
+        </div>
+        <app-formation-form *ngIf="show" (formationAdded)="appendFormation($event)" (toggle)="toggle($event)"></app-formation-form>
+    </div>
+</body>

@@ -1,0 +1,6 @@
+<div *ngFor="let formation of formations">
+    <div *ngIf="formation.id==id">
+        <app-formation-form [formation]="formation" ></app-formation-form>
+    </div>
+
+</div>

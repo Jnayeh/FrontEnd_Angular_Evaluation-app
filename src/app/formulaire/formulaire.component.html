@@ -1,0 +1,191 @@
+<body>
+    <div style="padding:20px;">
+        <div class="container rounded">
+            <div class="wrapper">
+            <div style="text-align:center; font-size:6vh; padding-top:20px">FICHE DE SATISFACTION</div>
+                <form action="#" method="post" #form="ngForm" (ngSubmit)="addEvaluation(pariticipantNom.value,pariticipantPreNom.value,pariticipantTelephone.value,pariticipantAdresse.value)">
+                    
+                    <div class="form-row">
+                        <!-- Theme -->
+                        <div class="col-md-3 mb-3">
+                            <label for="theme">Theme formation</label>
+                            <select type="text" id="theme"  #formation="ngModel" [(ngModel)]="f.theme" required name="Theme" class="form-control">
+                                <option value="" [hidden]="true" > </option>
+                                <option *ngFor="let formation of formations" value="{{formation.theme}}" >{{formation.theme}}</option>
+                            </select>  
+                        </div>
+                        <div class="col-md-1 mb-3"></div>
+                        <!-- Date formation-->
+                        <div class="col-md-3 mb-3">
+                            <label for="date">Date formation</label>
+                            <input type="date" class="form-control" id="date" name="Date"  #formationDate="ngModel" autofocus required [(ngModel)]="date_formation"  autofocus />
+                        </div>
+                        <div class="col-md-1 mb-3"></div>
+                        <!-- Formateur -->
+                        <div class="col-md-4 mb-3">
+                            <label for="theme">Formateur</label>
+                            <select type="text" id="formateur"  #Formateur="ngModel" [(ngModel)]="f.fNom" required name="Formateur" class="form-control">
+                                <option value="" [hidden]="true" > </option>
+                                <option *ngFor="let formateur of formateurs" value="{{formateur.nom}} {{formateur.prenom}}" >{{formateur.nom}} {{formateur.prenom}}</option>
+                            </select>  
+                        </div>
+                    </div>
+                    <!-- pariticipant -->
+                    <div class="form-row">
+                        <!-- Nom -->
+                        <div class="col-md-2 mb-3">
+                            <label for="last_name">Nom</label>
+                            <input type="text" id="last name" class="form-control" name="Nom" placeholder="Nom " #pariticipantNom="ngModel" autofocus required [(ngModel)]="f.nom"/>
+                            <div [hidden]="!pariticipantNom.errors?.required || pariticipantNom.pristine" class="alert alert-danger"> Le nom est obligatoire </div>
+                        </div>
+                        <!-- Prenom -->
+                        <div class="col-md-2 mb-3">
+                            <label for="first_name">Prenom</label>
+                            <input type="text" id="first_name" class="form-control" name="PreNom" placeholder="Prenom "  #pariticipantPreNom="ngModel" autofocus required [(ngModel)]="f.prenom"/>
+                            <div [hidden]="!pariticipantPreNom.errors?.required || pariticipantPreNom.pristine" class="alert alert-danger"> Le prenom est obligatoire </div>
+                        </div>
+                        <!-- Telephone -->
+                        <div class="col-md-2 mb-3">
+                            <label for="telephone">Telephone</label>
+                            <input type="number" class="form-control" id="telephone" name="Telephone" placeholder="Numéro"  #pariticipantTelephone="ngModel" autofocus required [(ngModel)]="f.telephone"  autofocus pattern="[0-9]{8}$"/>
+                        </div>
+                        <!-- Mail -->
+                        <div class="col-md-6 mb-3">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" id="email" name="Email"  placeholder="Example: m@gmail.com "  autofocus required [(ngModel)]="f.email"  #pariticipantAdresse="ngModel" autofocus pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"/>
+                        </div>
+                    </div>
+                    <!-- Errors -->
+                    <div *ngIf="pariticipantTelephone.invalid && pariticipantTelephone.dirty" class="alert alert-danger"> Le numéro du telephone doit être composé de 8 chiffres </div>
+                    <div [hidden]="!pariticipantTelephone.errors?.required || pariticipantTelephone.pristine" class="alert alert-danger"> Le numéro du telephone est obligatoire </div>
+                    <div *ngIf="pariticipantAdresse.invalid && pariticipantAdresse.dirty" class="alert alert-danger"> L'email doit sous la forme *****@****.***  </div>
+                    <div [hidden]="!pariticipantAdresse.errors?.required || pariticipantAdresse?.pristine" class="alert alert-danger"> L'email est obligatoire </div>
+                    <div class="form-row">
+                        <!-- Type -->
+                        <div class="col-md-4 mb-3">
+                            <label for="type">Type</label>
+                            <select type="text" id="type"  #etablissementType="ngModel" [(ngModel)]="f.type" (change)="findEtablissementspartype(f.type)" required name="Type" class="form-control">
+                                <option value="" [hidden]="true" > </option>
+                                <option *ngFor="let type_etab of types_etab" value="{{type_etab.type}}" >{{type_etab.type}}</option>
+                            </select>  
+                        </div>
+                        <!-- Etablissement -->
+                        <div class="col-md-4 mb-3">
+                            <label for="etablissement">Etablissement</label>
+                            <select type="text" id="etablissement"  #etablissement="ngModel" [(ngModel)]="f.etNom"  required name="Etablissement" class="form-control">
+                                <option value="" [hidden]="true" > </option>
+                                <option *ngFor="let etab of etabspartype" value="{{etab.nom}}" >{{etab.nom}}</option>
+                            </select>  
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-6 mb-3">
+                            <label >Le contenu est-il adapté à vos besoins ?</label>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="col-md-2 mb-3 radio-inline ">
+                                <input class="form-check-input" type="radio" #Q1_ev="ngModel" autofocus required [(ngModel)]="Q1" name="q1" value="5" />Faible
+                            </label>
+                            <label class="col-md-3 mb-3 radio-inline ">
+                                <input class="form-check-input" type="radio" #Q1_ev="ngModel" autofocus required [(ngModel)]="Q1" name="q1" value="10" />Assez-bien
+                            </label>
+                            <label class="col-md-2 mb-3 radio-inline ">
+                                <input class="form-check-input" type="radio" #Q1_ev="ngModel" autofocus required [(ngModel)]="Q1" name="q1" value="15" />Bien
+                            </label>
+                            <label class="col-md-3 mb-3 radio-inline ">
+                                <input class="form-check-input" type="radio" #Q1_ev="ngModel" autofocus required [(ngModel)]="Q1" name="q1" value="20" />Trés bien
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-6 mb-3">
+                            <label >Comment trouvez-vous le rythme de la formation ?</label>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="col-md-2 mb-3 radio-inline ">
+                                <input class="form-check-input" type="radio" #Q2_ev="ngModel" autofocus required [(ngModel)]="Q2" name="q2" value="5" />Faible
+                            </label>
+                            <label class="col-md-3 mb-3 radio-inline ">
+                                <input class="form-check-input" type="radio" #Q2_ev="ngModel" autofocus required [(ngModel)]="Q2" name="q2" value="10" />Assez-bien
+                            </label>
+                            <label class="col-md-2 mb-3 radio-inline ">
+                                <input class="form-check-input" type="radio" #Q2_ev="ngModel" autofocus required [(ngModel)]="Q2" name="q2" value="15" />Bien
+                            </label>
+                            <label class="col-md-3 mb-3 radio-inline ">
+                                <input class="form-check-input" type="radio" #Q2_ev="ngModel" autofocus required [(ngModel)]="Q2" name="q2" value="20" />Trés bien
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-6 mb-3">
+                            <label >Comment trouvez-vous la logistique ?</label>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="col-md-2 mb-3 radio-inline ">
+                                <input class="form-check-input" type="radio" #Q3_ev="ngModel" autofocus required [(ngModel)]="Q3" name="q3" value="5" />Faible
+                            </label>
+                            <label class="col-md-3 mb-3 radio-inline ">
+                                <input class="form-check-input" type="radio" #Q3_ev="ngModel" autofocus required [(ngModel)]="Q3" name="q3" value="10" />Assez-bien
+                            </label>
+                            <label class="col-md-2 mb-3 radio-inline ">
+                                <input class="form-check-input" type="radio" #Q3_ev="ngModel" autofocus required [(ngModel)]="Q3" name="q3" value="15" />Bien
+                            </label>
+                            <label class="col-md-3 mb-3 radio-inline ">
+                                <input class="form-check-input" type="radio" #Q3_ev="ngModel" autofocus required [(ngModel)]="Q3" name="q3" value="20" />Trés bien
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-6 mb-3">
+                            <label >Qualité d'animation du formateur ?</label>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="col-md-2 mb-3 radio-inline ">
+                                <input class="form-check-input" type="radio" #Q4_ev="ngModel" autofocus required [(ngModel)]="Q4" name="q4" value="5" />Faible
+                            </label>
+                            <label class="col-md-3 mb-3 radio-inline ">
+                                <input class="form-check-input" type="radio" #Q4_ev="ngModel" autofocus required [(ngModel)]="Q4" name="q4" value="10" />Assez-bien
+                            </label>
+                            <label class="col-md-2 mb-3 radio-inline ">
+                                <input class="form-check-input" type="radio" #Q4_ev="ngModel" autofocus required [(ngModel)]="Q4" name="q4" value="15" />Bien
+                            </label>
+                            <label class="col-md-3 mb-3 radio-inline ">
+                                <input class="form-check-input" type="radio" #Q4_ev="ngModel" autofocus required [(ngModel)]="Q4" name="q4" value="20" />Trés bien
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-6 mb-3">
+                            <label >Qualité pédagogique du formateur ?</label>
+                        </div>
+                        <div class="col-md-6 mb-3 ">
+                            <label class="col-md-2 mb-3 radio-inline ">
+                                <input class="form-check-input" type="radio" #Q5_ev="ngModel" autofocus required [(ngModel)]="Q5" name="q5" value="5" />Faible
+                            </label>
+                            <label class="col-md-3 mb-3 radio-inline ">
+                                <input class="form-check-input" type="radio" #Q5_ev="ngModel" autofocus required [(ngModel)]="Q5" name="q5" value="10" />Assez-bien
+                            </label>
+                            <label class="col-md-2 mb-3 radio-inline ">
+                                <input class="form-check-input" type="radio" #Q5_ev="ngModel" autofocus required [(ngModel)]="Q5" name="q5" value="15" />Bien
+                            </label>
+                            <label class="col-md-3 mb-3 radio-inline ">
+                                <input class="form-check-input" type="radio" #Q5_ev="ngModel" autofocus required [(ngModel)]="Q5" name="q5" value="20" />Trés bien
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-row col-md-12 mb-3 pad rounded ">
+                        <label for="suggestion">Vos commentaires, remarques et/ou suggestion : </label>
+                        <textarea id="suggestion" class="form-control" name="Suggestion"  #suggestion="ngModel" autofocus rows="3" [(ngModel)]="f.suggestion"></textarea>
+                    </div>
+                    <!-- Buttons -->
+                    <div class="form-row">
+                        <input class="button col-md-4 mb-3" type="submit" value="Ajouter Evaluation" [class.is-loading]="isLoading" [disabled]="form.invalid" />
+                        <div class="button col-md-4 mb-3"></div>
+                        <input class="button col-md-4 mb-3" type="reset" value="Réinitialiser">
+                    </div>
+                    <div class="alert alert-danger" [hidden]="!error">{{ errors }}</div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>

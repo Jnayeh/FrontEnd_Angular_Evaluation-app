@@ -1,0 +1,5 @@
+<div *ngFor="let formateur of formateurs">
+    <div *ngIf="formateur.id==id">
+        <app-formateur-form [formateur]="formateur" ></app-formateur-form>
+    </div>
+</div>

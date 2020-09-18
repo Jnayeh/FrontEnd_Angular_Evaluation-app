@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "bad-puns-tracker-client-ng": {
+    "evaluation-app": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/bad-puns-tracker-client-ng",
+            "outputPath": "dist/evaluation-app",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -24,7 +24,9 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
+              "src/styles.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
             "scripts": []
           },
@@ -62,18 +64,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "bad-puns-tracker-client-ng:build"
+            "browserTarget": "evaluation-app:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "bad-puns-tracker-client-ng:build:production"
+              "browserTarget": "evaluation-app:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "bad-puns-tracker-client-ng:build"
+            "browserTarget": "evaluation-app:build"
           }
         },
         "test": {
@@ -88,9 +90,13 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
+              "src/styles.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js"
+            ]
           }
         },
         "lint": {
@@ -110,15 +116,19 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "bad-puns-tracker-client-ng:serve"
+            "devServerTarget": "evaluation-app:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "bad-puns-tracker-client-ng:serve:production"
+              "devServerTarget": "evaluation-app:serve:production"
             }
           }
         }
       }
-    }},
-  "defaultProject": "bad-puns-tracker-client-ng"
+    }
+  },
+  "defaultProject": "evaluation-app",
+  "cli": {
+    "analytics": "a92b25a3-bdd0-4e6a-87a7-76eb25c4f010"
+  }
 }

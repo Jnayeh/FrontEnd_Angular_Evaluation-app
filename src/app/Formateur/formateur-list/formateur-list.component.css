@@ -1,0 +1,37 @@
+.btn-outline-default{
+    color: #ffffff;
+    border-color: #ffffff;
+    font-weight: bold;
+}
+.btn-outline-default:hover{
+    background-color: #ffffff;
+    color: #4d5c80;
+}
+
+.btn-outline-dark{
+    font-weight: bold;
+}
+
+#bt{
+    
+    padding: 5px 15px 5px 15px;
+}
+th{
+    color: #ffffff;
+    font-weight: bold;
+    background-color: rgba(77, 92, 128, 0.486);
+}
+td{
+    color: #4d5c80;
+}
+.top{
+    margin-top: 30px;
+}
+.container{
+    backdrop-filter:  blur(6px);
+    background-color: rgba(255, 255, 255, 0.329) ;
+    padding: 10px;
+}
+body{
+    background-image: url("../../../assets/cims.png");
+}

@@ -1,0 +1,9 @@
+.alert-danger{
+  background-color: #03578f ;
+  color: #ffffff;
+  border:none;
+}
+body{
+  background-image: url("../assets/cims.png");
+  height: 100%;
+}

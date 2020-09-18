@@ -1,0 +1,39 @@
+<body>
+    <div class="container rounded top">
+        <span class="help is-info"  *ngIf="isLoading">Loading...</span>
+        <div *ngIf="!isLoading">
+            <table class="table" >
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nom</th>
+                        <th>Prenom</th>
+                        <th>Sexe</th>
+                        <th>Telephone</th>
+                        <th>Adresse</th>
+                        <th *ngIf="router.url === '/formateur/consult'">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let formateur of formateurs">
+                        <td>{{ formateur.id }}</td>
+                        <td>{{ formateur.nom | uppercase}}</td>
+                        <td>{{ formateur.prenom | uppercase}}</td>
+                        <td>{{ formateur.sexe | uppercase}}</td>
+                        <td>{{ formateur.telephone}}</td>
+                        <td>{{ formateur.email}}</td>
+
+                        <td *ngIf="router.url === '/formateur/consult'">
+                            <form>
+                                <button type="button" class="btn btn-outline-default btn-sm" [routerLink]="['/formateur/edit',formateur.id]">Modifier </button>
+                                <button type="button" class="btn btn-outline-dark btn-sm" [class.is-loading]="isUpdating(formateur.id)" (click)="removeFormateur(formateur.id)">Supprimer </button>
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <button *ngIf="router.url === '/formateurs'" (click)="toggle(show)" class="btn btn-outline-dark btn-sm" id="bt">{{btName}} </button>
+        </div>
+        <app-formateur-form *ngIf="show" (formateurAdded)="appendFormateur($event)"(toggle)="toggle($event)"></app-formateur-form>
+    </div>
+</body>

@@ -1,0 +1,37 @@
+.btn-outline-default{
+    color: #00d9ff;
+    border-color: #00d9ff;
+}
+.btn-outline-default:hover{
+    background-color: #00d9ff;
+    color: white;
+}
+
+.btn-outline-dark{
+    color: #14A1F6;
+    border-color: #14A1F6;
+}
+.btn-outline-dark:hover{
+    background-color: #14A1F6;
+    color: white;
+}
+#bt{
+    padding: 5px 15px 5px 15px;
+}
+div,th{
+    color: #1393e2;
+    font-weight: bold;
+    font-size:14px;
+}
+td{
+    color: #798bb4;
+    font-size:14px;
+}
+.top{
+    
+    margin-top: 30px;
+}
+.table{
+    backdrop-filter:  blur(16px);
+    background-color: rgba(255, 255, 255, 0.5) ;
+}

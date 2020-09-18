@@ -1,0 +1,125 @@
+body {
+    font-family: "Lato", sans-serif;
+  }
+  
+  .sidebar {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #0464A4;
+    overflow-x: hidden;
+    transition: 0.5s;
+  }
+  
+  .sidebar a {
+    padding: 8px 8px 8px 20px;
+    text-decoration: none;
+    font-size: 20px;
+    color: #00d9ff;
+    display: block;
+    transition: 0.3s;
+  }
+  .sidebar a:active{
+    color: #f1f1f1;
+    background-color: #0464A4;
+  }
+  
+  .sidebar a:hover,.dropdown-btn:hover {
+    color: #f1f1f1;
+  }
+  
+  .openbtn {
+    font-size: 20px;
+    cursor: pointer;
+    background-color: #0464A4;
+    text-decoration: none;
+    position: absolute;
+    color: white;
+    padding: 4px 10px;
+    margin: 3px 50px;
+    border: none;
+  }
+  
+  .openbtn:hover {
+    background-color: #049aff;
+    border: none;
+  }
+  
+  #main {
+    transition: margin-left .5s;
+  }
+  
+  /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+  @media screen and (max-height: 450px) {
+    .sidebar {padding-top: 15px;}
+    .sidebar a {font-size: 18px;}
+  }
+  
+  /* Style the dropdown button */
+  .dropdown-btn {
+    padding: 8px 8px 8px 20px;
+    text-decoration: none;
+    font-size: 20px;
+    color: #00d9ff;
+    display: block;
+    border: none;
+    background: none;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    outline: none;
+  }
+  
+  /* Add an active class to the active dropdown button */
+  .active {
+    background-color: #00d9ff;
+    color: white;
+  }
+  
+  /* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
+  .dropdown-container {
+    display: none;
+    font-size:20px;
+    background-color: #0f87d8;
+    padding-left: 12px;
+  }
+  
+  .height{
+    height: 20px;
+  }
+  
+  .ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 5px;
+    overflow: hidden;
+    background-color: #0464A4;
+  }
+  
+  .ul li a {
+    float: right;
+    display: block;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    padding: 10px 10px;
+    text-decoration: none;
+  }
+  
+  .ul li a:hover {
+    background-color: #0f87d8;
+    transform: scale(1.1) ;
+    transition: transform 0.2s ;
+  }
+  #div{
+    padding-top: 60px;
+  }
+  .img{
+    margin-left:0px 5px;
+    height: 44px;
+    width: 44px;
+    position: absolute;
+  }
